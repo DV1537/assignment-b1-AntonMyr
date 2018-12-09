@@ -143,31 +143,52 @@ float Polygon::circumference() {
   return distance;
 }
 
-Coordinate Polygon::position() {
+void Polygon::getMaxValues() {
   float initialX = coordsArr[0].getX();
   float initialY = coordsArr[0].getY();
-  float minX = initialX, maxX = initialX, minY = initialY, maxY = initialY;
-  if(positionHasBeenRun)
-    return center;
+  xMin = initialX, xMax = initialX, yMin = initialY, yMax = initialY;
 
   for(int i = 0; i < pointCount; i++) {
     float x = coordsArr[i].getX();
     float y = coordsArr[i].getY();
-    if(x < minX)
-      minX = x;
-    if(x > maxX)
-      maxX = x;
-    if(y < minY)
-      minY = y;
-    if(y > maxY)
-      maxY = y;
+    if(x < xMin)
+      xMin = x;
+    if(x > xMax)
+      xMax = x;
+    if(y < yMin)
+      yMin = y;
+    if(y > yMax)
+      yMax = y;
   }
+}
 
-  float width = maxX - abs(minX);
-  float height = maxY - abs(minY);
+float Polygon::getMax(coordType type) {
+  getMaxValues();
+  if(type == X)
+    return xMax;
+  else
+    return yMax;
+}
 
-  float centerWidth = (width/2) + minX;
-  float centerHeight = (height/2) + minY;
+float Polygon::getMin(coordType type) {
+  getMaxValues();
+  if(type == X)
+    return xMin;
+  else
+    return yMin;
+}
+
+Coordinate Polygon::position() {
+  if(positionHasBeenRun)
+    return center;
+  
+  getMaxValues();
+
+  float width = xMax - abs(xMin);
+  float height = yMax - abs(yMin);
+
+  float centerWidth = (width/2) + xMin;
+  float centerHeight = (height/2) + yMin;
 
   center = {centerWidth, centerHeight};
   return center;
