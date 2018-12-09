@@ -13,6 +13,11 @@ float Coordinate::getY() {
   return yVal;
 };
 
+std::ostream& operator<<(std::ostream& stream, Coordinate &Coord) {
+  stream << "(" << Coord.getX() << ", " << Coord.getY() << ") ";
+  return stream << std::endl;
+}
+
 float Coordinate::distance(Coordinate d) {
   float dx = d.getX() - xVal;
   float dy = d.getY() - yVal;
