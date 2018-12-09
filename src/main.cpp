@@ -2,6 +2,7 @@
 #include <string>
 #include <cmath>
 #include <fstream>
+#include "../include/Figure.hpp"
 #include "../include/Coordinate.hpp"
 #include "../include/Polygon.hpp"
 #include "../include/Functions.hpp"
@@ -44,11 +45,6 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  if(line != 2) {
-    std::cout << "Cannot read file, this program requires no more or less than 2 lines of coordinates" << std::endl;
-    exit(EXIT_FAILURE);
-  }
-
   readFile.clear();
   readFile.seekg(0, std::ios::beg);
 
@@ -80,12 +76,16 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  Polygon summed = shapes[0] + shapes[1];
+  Figure everyShape(currentLine, shapes);
 
-  float area = summed.area();
-  area = std::roundf(area * 1000) / 1000;
+  //getBoundingBox uses these coordinates to return
+  Coordinate topLeft;
+  Coordinate botRight;
 
-  std::cout << "Area: " << area << std::endl;
+  everyShape.getBoundingBox(&topLeft, &botRight);
+
+  std::cout << "Bounding box top left coordinate: " << topLeft;
+  std::cout << "Bounding box bottom right coordinate: " << botRight;
 
   delete [] shapes;
 
