@@ -2,20 +2,22 @@
 #define FIGURE_H
 
 #include "Coordinate.hpp"
-#include "Shape.hpp"
+#include "Polygon.hpp"
 
 class Figure {
  private:
-  Shape *shapeArr;
+  Polygon *shapeArr;
   int capacity;
   int capacityUsed;
 
-  Coordinate getMax(char type);
-  Coordinate getMin(char type);
+  float getMax(coordType type);
+  float getMin(coordType type);
 
  public:
-  void addShape();
-  void getBoundingBox();
+  Figure(int capacity, Polygon *orgShapeArr);
+  ~Figure();
+  void addShape(Polygon *s);
+  void getBoundingBox(Coordinate *topLeft, Coordinate *botRight);
 };
 
 #endif

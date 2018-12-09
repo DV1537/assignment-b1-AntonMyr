@@ -150,6 +150,33 @@ src/coordinate.cpp.s:
 	$(MAKE) -f CMakeFiles/shapes.dir/build.make CMakeFiles/shapes.dir/src/coordinate.cpp.s
 .PHONY : src/coordinate.cpp.s
 
+src/figure.o: src/figure.cpp.o
+
+.PHONY : src/figure.o
+
+# target to build an object file
+src/figure.cpp.o:
+	$(MAKE) -f CMakeFiles/shapes.dir/build.make CMakeFiles/shapes.dir/src/figure.cpp.o
+.PHONY : src/figure.cpp.o
+
+src/figure.i: src/figure.cpp.i
+
+.PHONY : src/figure.i
+
+# target to preprocess a source file
+src/figure.cpp.i:
+	$(MAKE) -f CMakeFiles/shapes.dir/build.make CMakeFiles/shapes.dir/src/figure.cpp.i
+.PHONY : src/figure.cpp.i
+
+src/figure.s: src/figure.cpp.s
+
+.PHONY : src/figure.s
+
+# target to generate assembly for a file
+src/figure.cpp.s:
+	$(MAKE) -f CMakeFiles/shapes.dir/build.make CMakeFiles/shapes.dir/src/figure.cpp.s
+.PHONY : src/figure.cpp.s
+
 src/functions.o: src/functions.cpp.o
 
 .PHONY : src/functions.o
@@ -243,6 +270,9 @@ help:
 	@echo "... src/coordinate.o"
 	@echo "... src/coordinate.i"
 	@echo "... src/coordinate.s"
+	@echo "... src/figure.o"
+	@echo "... src/figure.i"
+	@echo "... src/figure.s"
 	@echo "... src/functions.o"
 	@echo "... src/functions.i"
 	@echo "... src/functions.s"
